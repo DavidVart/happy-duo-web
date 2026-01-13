@@ -6,6 +6,7 @@ import {
   ImageIcon,
   Settings2
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -56,7 +57,7 @@ const colorClasses = {
 const iconColorClasses = {
   pink: "text-primary",
   yellow: "text-amber-600",
-  blue: "text-hero-border",
+  blue: "text-blue-600",
   purple: "text-purple-600",
 };
 
@@ -64,7 +65,13 @@ const Features = () => {
   return (
     <section id="features" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16">
+        <motion.div 
+          className="text-center space-y-4 mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="section-badge mx-auto">
             <span className="text-lg">✨</span>
             <span>Features</span>
@@ -76,22 +83,26 @@ const Features = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Happy Duo works silently in your WhatsApp, offering support exactly when you need it.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`${colorClasses[feature.color]} rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`${colorClasses[feature.color]} feature-card rounded-2xl p-6`}
             >
               <div className="space-y-4">
-                <div className={`w-12 h-12 rounded-xl bg-card flex items-center justify-center ${iconColorClasses[feature.color]}`}>
+                <div className={`w-12 h-12 rounded-xl bg-card border-2 border-foreground flex items-center justify-center ${iconColorClasses[feature.color]}`}>
                   <feature.icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-display font-semibold">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
