@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MessageCircle, Sparkles, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 import heroIllustration from "@/assets/hero-illustration.png";
 
 const Hero = () => {
@@ -9,17 +10,21 @@ const Hero = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle WhatsApp signup
     console.log("Phone submitted:", phoneNumber);
   };
 
   return (
     <section className="relative overflow-hidden">
-      <div className="hero-section doodle-pattern mx-4 mt-4 rounded-3xl">
+      <div className="hero-section mx-4 mt-4 rounded-2xl">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="space-y-8">
+            <motion.div 
+              className="space-y-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="section-badge">
                 <Sparkles className="w-4 h-4" />
                 <span>AI-Powered Relationship Coach</span>
@@ -46,10 +51,10 @@ const Hero = () => {
                       placeholder="Enter your WhatsApp number"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="pl-12 h-14 text-base rounded-xl border-2 border-border focus:border-accent"
+                      className="pl-12 h-14 text-base rounded-xl border-2 border-foreground bg-card focus:border-primary"
                     />
                   </div>
-                  <Button type="submit" variant="whatsapp" size="xl" className="gap-2">
+                  <Button type="submit" variant="whatsapp" size="xl" className="gap-2 border-2 border-foreground">
                     <MessageCircle className="w-5 h-5" />
                     Get Started
                   </Button>
@@ -58,38 +63,51 @@ const Hero = () => {
                   🎉 Start your <strong>30-day free trial</strong> today. No credit card required.
                 </p>
               </form>
-            </div>
+            </motion.div>
 
             {/* Right Content - Illustration */}
-            <div className="relative flex justify-center lg:justify-end">
+            <motion.div 
+              className="relative flex justify-center lg:justify-end"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <img
                   src={heroIllustration}
                   alt="Happy couple using Happy Duo on their phones"
-                  className="relative rounded-2xl shadow-2xl max-w-full h-auto animate-float"
+                  className="relative rounded-2xl border-3 border-foreground shadow-[8px_8px_0_hsl(var(--foreground))] max-w-full h-auto"
+                  style={{ borderWidth: '3px' }}
                 />
                 
                 {/* Floating badges */}
-                <div className="absolute -left-4 top-1/4 bg-card rounded-xl shadow-lg p-3 animate-float-delayed">
+                <motion.div 
+                  className="absolute -left-4 top-1/4 bg-card rounded-xl border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-3"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-feature-blue border-2 border-foreground flex items-center justify-center">
                       <span className="text-lg">💬</span>
                     </div>
                     <span className="text-sm font-medium">Real-time feedback</span>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="absolute -right-4 bottom-1/4 bg-card rounded-xl shadow-lg p-3 animate-float">
+                <motion.div 
+                  className="absolute -right-4 bottom-1/4 bg-card rounded-xl border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-3"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-feature-pink border-2 border-foreground flex items-center justify-center">
                       <span className="text-lg">❤️</span>
                     </div>
                     <span className="text-sm font-medium">Love Score: 94%</span>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
