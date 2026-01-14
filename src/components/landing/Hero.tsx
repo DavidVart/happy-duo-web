@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { MessageCircle, Sparkles, Phone } from "lucide-react";
+import { MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import heroIllustration from "@/assets/hero-illustration.png";
 
@@ -41,22 +40,19 @@ const Hero = () => {
                 and grow together—right where you already chat.
               </p>
 
-              {/* WhatsApp CTA Form */}
+              {/* WhatsApp CTA Form - Stripe-style unified input */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-3 max-w-md">
-                  <div className="relative flex-1">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                    <Input
-                      type="tel"
-                      placeholder="Enter your WhatsApp number"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      className="pl-12 h-14 text-base rounded-xl border-2 border-foreground bg-card focus:border-primary"
-                    />
-                  </div>
-                  <Button type="submit" variant="whatsapp" size="xl" className="gap-2 border-2 border-foreground">
-                    <MessageCircle className="w-5 h-5" />
-                    Get Started
+                <div className="relative flex items-center max-w-md bg-card rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-1.5 pl-5">
+                  <input
+                    type="tel"
+                    placeholder="WhatsApp number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground min-w-0"
+                  />
+                  <Button type="submit" variant="hero" className="rounded-full px-6 h-11 gap-2 shrink-0">
+                    Start now
+                    <MessageCircle className="w-4 h-4" />
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
