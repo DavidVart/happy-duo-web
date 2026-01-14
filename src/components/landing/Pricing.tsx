@@ -73,7 +73,7 @@ const Pricing = () => {
               </Button>
 
               <p className="text-center text-sm text-muted-foreground">
-                No credit card required. Cancel anytime.
+                Cancel anytime. You won't be charged until your trial ends.
               </p>
             </div>
 
