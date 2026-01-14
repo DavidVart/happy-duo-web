@@ -60,7 +60,7 @@ const Hero = () => {
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  🎉 Start your <strong>30-day free trial</strong> today. No credit card required.
+                  🎉 Start your <strong>30-day free trial</strong> today.
                 </p>
               </form>
             </motion.div>

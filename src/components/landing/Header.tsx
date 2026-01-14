@@ -9,7 +9,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full">
       {/* Solid top bar */}
       <div className="bg-foreground text-background py-2 text-center text-sm font-medium">
-        🎉 Start your <strong>30-day free trial</strong> today — No credit card required!
+        🎉 Start your <strong>30-day free trial</strong> today!
       </div>
       
       <div className="bg-card border-b-2 border-foreground">

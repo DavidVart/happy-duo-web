@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "What happens during the 30-day free trial?",
-    answer: "You get full access to all Happy Duo features for 30 days—no credit card required. Try the smart feedback, relationship scoring, date ideas, and all integrations. If you love it, subscribe to continue. If not, no worries!",
+    answer: "You get full access to all Happy Duo features for 30 days. Try the smart feedback, relationship scoring, date ideas, and all integrations. You won't be charged until your trial ends, and you can cancel anytime.",
   },
   {
     question: "How does the relationship score work?",
