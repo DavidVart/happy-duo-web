@@ -5,13 +5,17 @@ import { useState } from "react";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Solid top bar */}
-      <div className="bg-foreground text-background py-2 text-center text-sm font-medium">
-        🎉 Start your <strong>30-day free trial</strong> today!
-      </div>
-      
       <div className="bg-card border-b-2 border-foreground">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -22,16 +26,16 @@ const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium">
               Features
             </a>
-            <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium">
               How it Works
             </a>
-            <a href="#pricing" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium">
               Pricing
             </a>
-            <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium">
               FAQ
             </a>
           </nav>
@@ -52,16 +56,16 @@ const Header = () => {
         {mobileMenuOpen && (
           <div className="md:hidden border-t-2 border-foreground bg-card">
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <a href="#features" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 Features
               </a>
-              <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 How it Works
               </a>
-              <a href="#pricing" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 Pricing
               </a>
-              <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 FAQ
               </a>
               <Button variant="hero" size="lg" className="border-2 border-foreground w-full">

@@ -11,8 +11,8 @@ import { motion } from "framer-motion";
 const features = [
   {
     icon: MessageSquareHeart,
-    title: "Smart Feedback",
-    description: "Get gentle suggestions when a message could be more constructive. Celebrate together when you communicate well.",
+    title: "Conflict De-escalation",
+    description: "When Happy Duo senses a conversation is getting heated, it gently intervenes to suggest a time-out—so you can cool off and reconnect later.",
     color: "pink" as const,
   },
   {
@@ -46,6 +46,11 @@ const features = [
     color: "yellow" as const,
   },
 ];
+
+const trustNote = {
+  title: "Human-Backed Quality",
+  description: "Chats may be reviewed by licensed therapists to ensure service quality. Your names always remain anonymous—feel confident sharing your most intimate conversations.",
+};
 
 const colorClasses = {
   pink: "bg-feature-pink",
@@ -105,6 +110,21 @@ const Features = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Trust Note */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 bg-card rounded-2xl border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-8 text-center max-w-3xl mx-auto"
+        >
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <span className="text-2xl">🔒</span>
+            <h3 className="text-xl font-display font-semibold">{trustNote.title}</h3>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">{trustNote.description}</p>
+        </motion.div>
       </div>
     </section>
   );
