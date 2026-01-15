@@ -45,8 +45,8 @@
 
     --radius: 0.75rem;
 
-    /* Custom tokens - light blue sky #16b4dc */
-    --hero-bg: 193 83% 47%;
+    /* Custom tokens - light blue sky (lighter version) */
+    --hero-bg: 193 83% 92%;
     --hero-border: 0 0% 0%;
     --feature-card-1: 340 89% 92%;
     --feature-card-2: 51 97% 90%;

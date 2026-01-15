@@ -30,7 +30,7 @@ const Pricing = () => {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold">
             Invest in your{" "}
-            <span className="gradient-text">happiness together</span>
+            <span className="text-primary">happiness together</span>
           </h2>
         </motion.div>
 

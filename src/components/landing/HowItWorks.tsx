@@ -36,7 +36,7 @@ const HowItWorks = () => {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold">
             Get started in{" "}
-            <span className="gradient-text">3 simple steps</span>
+            <span className="text-primary">3 simple steps</span>
           </h2>
         </motion.div>
 
