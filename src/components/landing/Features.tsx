@@ -82,7 +82,7 @@ const Features = () => {
             <span className="text-[hsl(var(--primary))]">thrive together</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Happy Duo works silently in your WhatsApp, offering support exactly when you need it.
+            Happy Duo works silently in your WhatsApp, offering support exactly when you&nbsp;need&nbsp;it.
           </p>
         </motion.div>
 
