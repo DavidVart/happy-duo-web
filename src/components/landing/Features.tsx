@@ -47,10 +47,6 @@ const features = [
   },
 ];
 
-const trustNote = {
-  title: "Human-Backed Quality",
-  description: "Chats may be reviewed by professional therapists to ensure service quality. Your names always remain anonymous—feel confident sharing your most intimate conversations.",
-};
 
 const colorClasses = {
   pink: "bg-feature-pink",
@@ -111,21 +107,6 @@ const Features = () => {
           ))}
         </div>
 
-        {/* Trust Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 bg-card rounded-2xl border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] px-8 py-5"
-        >
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-xl">🔒</span>
-            <h3 className="text-lg font-display font-semibold">{trustNote.title}</h3>
-            <span className="text-muted-foreground">—</span>
-            <p className="text-muted-foreground">{trustNote.description}</p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
