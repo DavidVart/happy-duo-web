@@ -13,8 +13,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="hero-section mx-4 mt-4 rounded-2xl">
+    <section className="relative overflow-hidden hero-section">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -106,7 +105,6 @@ const Hero = () => {
             </motion.div>
           </div>
         </div>
-      </div>
     </section>
   );
 };
