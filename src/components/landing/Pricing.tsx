@@ -60,15 +60,15 @@ const Pricing = () => {
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-accent border-2 border-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-accent-foreground" />
+                    <div className="w-5 h-5 rounded-full bg-[hsl(var(--logo-yellow))] border-2 border-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-[hsl(var(--logo-yellow-foreground))]" />
                     </div>
                     <span className="text-foreground">{benefit}</span>
                   </li>
                 ))}
               </ul>
 
-              <Button variant="whatsapp" size="xl" className="w-full border-2 border-foreground">
+              <Button variant="hero" size="xl" className="w-full border-2 border-foreground">
                 Start 30-Day Free Trial
               </Button>
 
