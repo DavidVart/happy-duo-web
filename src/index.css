@@ -45,8 +45,8 @@
 
     --radius: 0.75rem;
 
-    /* Custom tokens */
-    --hero-bg: 45 50% 94%;
+    /* Custom tokens - light sky blue */
+    --hero-bg: 200 60% 92%;
     --hero-border: 0 0% 0%;
     --feature-card-1: 350 70% 92%;
     --feature-card-2: 50 85% 90%;
@@ -127,7 +127,6 @@
 @layer components {
   .hero-section {
     background-color: hsl(var(--hero-bg));
-    border: 3px solid hsl(var(--hero-border));
   }
 
   .feature-card {
