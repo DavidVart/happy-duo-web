@@ -1,9 +1,20 @@
-import { Heart, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import logo from "@/assets/happy-duo-logo.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -16,13 +27,16 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full">
-      <div className="bg-card border-b-2 border-foreground">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div 
+        className={`transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-[hsl(var(--hero-bg))]/80 backdrop-blur-md border-b border-foreground/10' 
+            : 'bg-[hsl(var(--hero-bg))] border-b-2 border-foreground'
+        }`}
+      >
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-primary border-2 border-foreground flex items-center justify-center">
-              <Heart className="w-5 h-5 text-primary-foreground fill-current" />
-            </div>
-            <span className="text-xl font-display font-bold">Happy Duo</span>
+            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
@@ -54,7 +68,9 @@ const Header = () => {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t-2 border-foreground bg-card">
+          <div className={`md:hidden border-t border-foreground/20 ${
+            isScrolled ? 'bg-[hsl(var(--hero-bg))]/90 backdrop-blur-md' : 'bg-[hsl(var(--hero-bg))]'
+          }`}>
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
               <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 Features
