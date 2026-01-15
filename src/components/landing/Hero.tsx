@@ -34,9 +34,8 @@ const Hero = () => {
                 {" "}in WhatsApp
               </h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-                Happy Duo helps couples communicate better, celebrate each other, 
-                and grow together—right where you already chat.
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl whitespace-normal">
+                Happy Duo helps couples communicate better, celebrate each other, and grow together—right where you already chat.
               </p>
 
               {/* WhatsApp CTA Form - Stripe-style unified input */}
@@ -44,7 +43,7 @@ const Hero = () => {
                 <div className="relative flex items-center max-w-md bg-card rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-1.5 pl-5">
                   <input
                     type="tel"
-                    placeholder="WhatsApp number"
+                    placeholder="Enter your WhatsApp number"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     className="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground min-w-0"
@@ -71,7 +70,7 @@ const Hero = () => {
                 <img
                   src={heroIllustration}
                   alt="Happy couple using Happy Duo on their phones"
-                  className="relative rounded-2xl border-3 border-foreground shadow-[8px_8px_0_hsl(var(--foreground))] max-w-full h-auto"
+                  className="relative rounded-2xl border-3 border-foreground shadow-[8px_8px_0_hsl(var(--foreground))] w-full h-auto object-cover max-h-[400px] md:max-h-none"
                   style={{ borderWidth: '3px' }}
                 />
                 

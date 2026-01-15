@@ -35,27 +35,32 @@ const Header = () => {
         }`}
       >
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <div className="flex items-center">
-            <img src={logo} alt="Happy Duo" className="h-12 md:h-14 w-auto" />
+          {/* Mobile: centered logo with absolute positioning */}
+          <div className="lg:hidden absolute left-1/2 -translate-x-1/2">
+            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
+          </div>
+          {/* Desktop: left-aligned logo */}
+          <div className="hidden lg:flex items-center">
+            <img src={logo} alt="Happy Duo" className="h-14 w-auto" />
           </div>
           
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium">
+          <nav className="hidden lg:flex items-center gap-6">
+            <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
               Features
             </a>
-            <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
               How it Works
             </a>
-            <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
               Pricing
             </a>
-            <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
               FAQ
             </a>
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" size="lg">
+          <div className="hidden lg:flex items-center gap-3">
+            <Button variant="outline" size="lg" className="font-bold">
               Log in
             </Button>
             <Button variant="hero" size="lg">
@@ -63,8 +68,11 @@ const Header = () => {
             </Button>
           </div>
 
+          {/* Spacer for mobile to balance hamburger */}
+          <div className="lg:hidden w-10" />
+          
           <button 
-            className="md:hidden p-2"
+            className="lg:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <Menu className="w-6 h-6" />
@@ -73,7 +81,7 @@ const Header = () => {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className={`md:hidden border-t border-foreground/20 ${
+          <div className={`lg:hidden border-t border-foreground/20 ${
             isScrolled ? 'bg-[hsl(var(--hero-bg))]/90 backdrop-blur-md' : 'bg-[hsl(var(--hero-bg))]'
           }`}>
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
@@ -90,7 +98,7 @@ const Header = () => {
                 FAQ
               </a>
               <div className="flex flex-col gap-2 pt-2">
-                <Button variant="outline" size="lg" className="w-full">
+                <Button variant="outline" size="lg" className="w-full font-bold">
                   Log in
                 </Button>
                 <Button variant="hero" size="lg" className="w-full">

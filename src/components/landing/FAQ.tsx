@@ -8,12 +8,8 @@ import {
 
 const faqs = [
   {
-    question: "Are my conversations reviewed by humans?",
-    answer: "Chats may be reviewed by professional therapists to ensure service quality. Your names always remain anonymous—feel confident sharing your most intimate conversations.",
-  },
-  {
-    question: "How does Happy Duo read my messages?",
-    answer: "Happy Duo creates a dedicated WhatsApp group where both you and your partner chat. Our AI coach joins this group and monitors conversations in real-time to provide helpful feedback. Your messages are encrypted and never shared with third parties.",
+    question: "How does Happy Duo work and are my conversations reviewed by humans?",
+    answer: "Happy Duo creates a dedicated WhatsApp group where both you and your partner chat. Our AI coach joins this group and monitors conversations in real-time to provide helpful feedback. Your messages are encrypted and never shared with third parties. Chats may be reviewed by professional therapists to ensure service quality—your names always remain anonymous, so feel confident sharing your most intimate conversations.",
   },
   {
     question: "Is my data private and secure?",
