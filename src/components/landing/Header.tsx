@@ -36,7 +36,7 @@ const Header = () => {
       >
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
           <div className="flex items-center">
-            <img src={logo} alt="Happy Duo" className="h-14 md:h-16 w-auto" />
+            <img src={logo} alt="Happy Duo" className="h-16 md:h-20 w-auto" />
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
