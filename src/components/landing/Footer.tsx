@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center">
-            <img src={logo} alt="Happy Duo" className="h-10 md:h-12 w-auto brightness-0 invert" />
+            <img src={logo} alt="Happy Duo" className="h-10 md:h-12 w-auto" />
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
