@@ -31,12 +31,12 @@ const Header = () => {
         className={`transition-all duration-300 ${
           isScrolled 
             ? 'bg-[hsl(var(--hero-bg))]/80 backdrop-blur-md border-b border-foreground/10' 
-            : 'bg-[hsl(var(--hero-bg))] border-b-2 border-foreground'
+            : 'bg-[hsl(var(--hero-bg))]'
         }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
+            <img src={logo} alt="Happy Duo" className="h-14 md:h-16 w-auto" />
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
