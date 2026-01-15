@@ -23,18 +23,18 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="section-badge">
+              <div className="section-badge bg-white/20 border-white/40 text-white">
                 <Sparkles className="w-4 h-4" />
                 <span>AI-Powered Relationship Coach</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight text-white">
                 Your AI coach for{" "}
-                <span className="text-[hsl(var(--primary))]">stronger relationships</span>
+                <span className="text-[#fcd411]">stronger relationships</span>
                 {" "}in WhatsApp
               </h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
+              <p className="text-lg md:text-xl text-white/90 max-w-xl">
                 Happy Duo helps couples communicate better, celebrate each other, 
                 and grow together—right where you already chat.
               </p>
@@ -54,7 +54,7 @@ const Hero = () => {
                     <MessageCircle className="w-4 h-4" />
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-white/80">
                   🎉 Start your <strong>30-day free trial</strong> today.
                 </p>
               </form>
