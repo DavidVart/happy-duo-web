@@ -83,7 +83,7 @@ const Features = () => {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold">
             Everything you need to{" "}
-            <span className="gradient-text">thrive together</span>
+            <span className="text-[hsl(var(--primary))]">thrive together</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Happy Duo works silently in your WhatsApp, offering support exactly when you need it.
