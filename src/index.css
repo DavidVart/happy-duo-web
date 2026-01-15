@@ -16,12 +16,12 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    /* Logo pink for accent text */
-    --primary: 350 70% 75%;
+    /* Logo pink for accent text - #f66299 */
+    --primary: 340 89% 67%;
     --primary-foreground: 0 0% 10%;
     
-    /* Logo yellow for CTAs */
-    --logo-yellow: 42 90% 60%;
+    /* Logo yellow for CTAs - #fcd411 */
+    --logo-yellow: 51 97% 53%;
     --logo-yellow-foreground: 0 0% 10%;
 
     /* Soft cream secondary */
@@ -41,16 +41,16 @@
     /* Bold black borders */
     --border: 0 0% 0%;
     --input: 0 0% 85%;
-    --ring: 4 80% 60%;
+    --ring: 340 89% 67%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens - light sky blue */
-    --hero-bg: 200 60% 92%;
+    /* Custom tokens - light blue sky #16b4dc */
+    --hero-bg: 193 83% 47%;
     --hero-border: 0 0% 0%;
-    --feature-card-1: 350 70% 92%;
-    --feature-card-2: 50 85% 90%;
-    --feature-card-3: 200 70% 92%;
+    --feature-card-1: 340 89% 92%;
+    --feature-card-2: 51 97% 90%;
+    --feature-card-3: 193 83% 92%;
     --feature-card-4: 280 60% 92%;
 
     --sidebar-background: 0 0% 98%;
@@ -169,7 +169,7 @@
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(4 80% 50%));
+    background-image: linear-gradient(135deg, hsl(var(--logo-yellow)), hsl(var(--primary)));
   }
 
   .bold-card {
