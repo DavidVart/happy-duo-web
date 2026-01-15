@@ -31,7 +31,7 @@ const Hero = () => {
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
                 Your AI coach for{" "}
-                <span className="gradient-text">stronger relationships</span>
+                <span className="text-[hsl(var(--primary))]">stronger relationships</span>
                 {" "}in WhatsApp
               </h1>
 

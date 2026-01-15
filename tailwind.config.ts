@@ -61,6 +61,10 @@ export default {
           blue: "hsl(var(--feature-card-3))",
           purple: "hsl(var(--feature-card-4))",
         },
+        logo: {
+          yellow: "hsl(var(--logo-yellow))",
+          "yellow-foreground": "hsl(var(--logo-yellow-foreground))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

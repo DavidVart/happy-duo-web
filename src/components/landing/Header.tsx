@@ -34,9 +34,9 @@ const Header = () => {
             : 'bg-[hsl(var(--hero-bg))]'
         }`}
       >
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src={logo} alt="Happy Duo" className="h-14 md:h-16 w-auto" />
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+          <div className="flex items-center">
+            <img src={logo} alt="Happy Duo" className="h-12 md:h-14 w-auto" />
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
@@ -54,9 +54,14 @@ const Header = () => {
             </a>
           </nav>
 
-          <Button variant="hero" size="lg" className="hidden md:flex border-2 border-foreground">
-            Get Started
-          </Button>
+          <div className="hidden md:flex items-center gap-3">
+            <Button variant="outline" size="lg">
+              Log in
+            </Button>
+            <Button variant="hero" size="lg">
+              Get Started
+            </Button>
+          </div>
 
           <button 
             className="md:hidden p-2"
@@ -84,9 +89,14 @@ const Header = () => {
               <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
                 FAQ
               </a>
-              <Button variant="hero" size="lg" className="border-2 border-foreground w-full">
-                Get Started
-              </Button>
+              <div className="flex flex-col gap-2 pt-2">
+                <Button variant="outline" size="lg" className="w-full">
+                  Log in
+                </Button>
+                <Button variant="hero" size="lg" className="w-full">
+                  Get Started
+                </Button>
+              </div>
             </nav>
           </div>
         )}

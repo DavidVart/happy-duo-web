@@ -16,9 +16,13 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    /* Coral/salmon primary */
-    --primary: 4 80% 60%;
-    --primary-foreground: 0 0% 100%;
+    /* Logo pink for accent text */
+    --primary: 350 70% 75%;
+    --primary-foreground: 0 0% 10%;
+    
+    /* Logo yellow for CTAs */
+    --logo-yellow: 42 90% 60%;
+    --logo-yellow-foreground: 0 0% 10%;
 
     /* Soft cream secondary */
     --secondary: 45 40% 92%;
