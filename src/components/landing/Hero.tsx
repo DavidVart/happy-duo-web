@@ -49,7 +49,7 @@ const Hero = () => {
                     className="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground min-w-0"
                   />
                   <Button type="submit" variant="hero" className="rounded-full px-6 h-11 gap-2 shrink-0">
-                    Start now
+                    Start chatting
                     <MessageCircle className="w-4 h-4" />
                   </Button>
                 </div>

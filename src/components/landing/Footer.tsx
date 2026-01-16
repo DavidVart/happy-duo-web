@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/happy-duo-logo.png";
 
 const Footer = () => {
@@ -19,12 +20,15 @@ const Footer = () => {
             <a href="#pricing" className="text-background/70 hover:text-background transition-colors">
               Pricing
             </a>
-            <a href="#" className="text-background/70 hover:text-background transition-colors">
+            <Link to="/about" className="text-background/70 hover:text-background transition-colors">
+              About
+            </Link>
+            <Link to="/privacy" className="text-background/70 hover:text-background transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="text-background/70 hover:text-background transition-colors">
+            </Link>
+            <Link to="/terms" className="text-background/70 hover:text-background transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </nav>
 
           <p className="text-sm text-background/50">
