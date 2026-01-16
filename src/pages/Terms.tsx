@@ -1,24 +1,14 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import logo from "@/assets/happy-duo-logo.png";
+import Header from "@/components/landing/Header";
+import Footer from "@/components/landing/Footer";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const Terms = () => {
+  useScrollToTop();
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Simple Header */}
-      <header className="py-6 border-b border-foreground/10">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-            <span>Back</span>
-          </Link>
-          <Link to="/">
-            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
-          </Link>
-          <div className="w-16" />
-        </div>
-      </header>
+    <div className="min-h-screen bg-background pt-[72px]">
+      <Header />
 
       <main className="container mx-auto px-4 py-16 max-w-3xl">
         <motion.article
@@ -53,7 +43,7 @@ const Terms = () => {
             </p>
           </section>
 
-          <section className="mb-8 bg-destructive/10 p-6 rounded-xl border-2 border-destructive/30">
+          <section className="mb-8">
             <h2 className="text-2xl font-display font-semibold mb-4">4. Medical and Mental Health Disclaimer (CRITICAL)</h2>
             <p className="text-muted-foreground leading-relaxed mb-4 font-semibold">
               HAPPY DUO IS NOT A LICENSED THERAPIST, MEDICAL PROVIDER, OR CRISIS INTERVENTION SERVICE.
@@ -140,6 +130,8 @@ const Terms = () => {
           </section>
         </motion.article>
       </main>
+
+      <Footer />
     </div>
   );
 };

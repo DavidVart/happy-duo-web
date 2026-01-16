@@ -1,29 +1,32 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import logo from "@/assets/happy-duo-logo.png";
+import Header from "@/components/landing/Header";
+import Footer from "@/components/landing/Footer";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+
+// Import logos
+import metaLogo from "@/assets/logos/meta.svg";
+import bainLogo from "@/assets/logos/bain.svg";
+import stanfordLogo from "@/assets/logos/stanford.svg";
+import michiganLogo from "@/assets/logos/michigan.svg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 }
 };
 
+const logos = [
+  { name: "Meta", src: metaLogo },
+  { name: "Bain & Co", src: bainLogo },
+  { name: "Stanford", src: stanfordLogo },
+  { name: "Michigan", src: michiganLogo },
+];
+
 const About = () => {
+  useScrollToTop();
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Simple Header */}
-      <header className="py-6 border-b border-foreground/10">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-            <span>Back</span>
-          </Link>
-          <Link to="/">
-            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
-          </Link>
-          <div className="w-16" />
-        </div>
-      </header>
+    <div className="min-h-screen bg-background pt-[72px]">
+      <Header />
 
       <main>
         {/* Hero Section */}
@@ -273,13 +276,7 @@ const About = () => {
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-                {[
-                  { name: "Meta", logo: "META" },
-                  { name: "Bain & Co", logo: "BAIN & CO" },
-                  { name: "Stanford", logo: "STANFORD" },
-                  { name: "Michigan", logo: "MICHIGAN" },
-                  { name: "Ping.me", logo: "PING.ME" },
-                ].map((company, index) => (
+                {logos.map((company, index) => (
                   <motion.div
                     key={company.name}
                     className="group cursor-default"
@@ -289,39 +286,20 @@ const About = () => {
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                     variants={fadeInUp}
                   >
-                    <span className="text-lg md:text-xl font-bold tracking-wide text-foreground/40 group-hover:text-foreground transition-all duration-300">
-                      {company.logo}
-                    </span>
+                    <img 
+                      src={company.src} 
+                      alt={company.name}
+                      className="h-8 md:h-10 w-auto grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    />
                   </motion.div>
                 ))}
               </div>
             </motion.div>
           </div>
         </section>
-
-        {/* Final CTA */}
-        <section className="py-24 md:py-32">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              className="max-w-[750px] mx-auto text-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              variants={fadeInUp}
-            >
-              <div className="p-8 rounded-2xl bg-feature-yellow border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))]">
-                <h3 className="text-xl md:text-2xl font-display font-bold mb-4">
-                  📌 A Final Note on Connection
-                </h3>
-                <p className="text-lg text-foreground leading-[1.8]">
-                  To make sure your relationship always stays front-and-center, we encourage every Happy Duo couple to pin this chat to the top of your WhatsApp. 🥇 It is a small, daily reminder that your partner is your #1 priority. 💍✨
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
       </main>
+
+      <Footer />
     </div>
   );
 };

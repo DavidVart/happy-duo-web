@@ -5,6 +5,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
 import Footer from "@/components/landing/Footer";
+import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <FAQ />
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };
