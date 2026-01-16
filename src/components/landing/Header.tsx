@@ -64,7 +64,7 @@ const Header = () => {
               Log in
             </Button>
             <Button variant="hero" size="lg">
-              Get Started
+              Start now
             </Button>
           </div>
 
@@ -102,7 +102,7 @@ const Header = () => {
                   Log in
                 </Button>
                 <Button variant="hero" size="lg" className="w-full">
-                  Get Started
+                  Start now
                 </Button>
               </div>
             </nav>
