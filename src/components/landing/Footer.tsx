@@ -11,13 +11,34 @@ const Footer = () => {
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <a href="#features" className="text-background/70 hover:text-background transition-colors">
+            <a 
+              href="#features" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-background/70 hover:text-background transition-colors cursor-pointer"
+            >
               Features
             </a>
-            <a href="#how-it-works" className="text-background/70 hover:text-background transition-colors">
+            <a 
+              href="#how-it-works" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-background/70 hover:text-background transition-colors cursor-pointer"
+            >
               How it Works
             </a>
-            <a href="#pricing" className="text-background/70 hover:text-background transition-colors">
+            <a 
+              href="#pricing" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-background/70 hover:text-background transition-colors cursor-pointer"
+            >
               Pricing
             </a>
             <Link to="/about" className="text-background/70 hover:text-background transition-colors">

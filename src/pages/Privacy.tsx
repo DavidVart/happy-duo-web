@@ -1,24 +1,14 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import logo from "@/assets/happy-duo-logo.png";
+import Header from "@/components/landing/Header";
+import Footer from "@/components/landing/Footer";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const Privacy = () => {
+  useScrollToTop();
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Simple Header */}
-      <header className="py-6 border-b border-foreground/10">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-            <span>Back</span>
-          </Link>
-          <Link to="/">
-            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
-          </Link>
-          <div className="w-16" />
-        </div>
-      </header>
+    <div className="min-h-screen bg-background pt-[72px]">
+      <Header />
 
       <main className="container mx-auto px-4 py-16 max-w-3xl">
         <motion.article
@@ -137,16 +127,12 @@ const Privacy = () => {
                   I only use them to help you! I look at your calendar to find "date night" gaps and your photos to remind you of beautiful times you've shared. 📸 It's all about creating more "us-time"!
                 </p>
               </div>
-
-              <div className="bg-feature-yellow p-4 rounded-xl border-2 border-foreground">
-                <p className="text-foreground font-medium">
-                  📌 Quick Reminder: To keep your private coach and your partner easy to reach, pin this chat to the top of your WhatsApp! 🥇 It keeps your relationship safe and front-and-center. 📌🥰
-                </p>
-              </div>
             </div>
           </section>
         </motion.article>
       </main>
+
+      <Footer />
     </div>
   );
 };
