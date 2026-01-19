@@ -16,6 +16,9 @@ const benefits = [
 
 const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
+  
+  // When toggle is OFF (left) = Monthly pricing shown
+  // When toggle is ON (right) = Annual pricing shown
 
   return (
     <section id="pricing" className="py-24 bg-background">
@@ -50,13 +53,13 @@ const Pricing = () => {
           </span>
           <button
             onClick={() => setIsAnnual(!isAnnual)}
-            className={`relative w-14 h-8 rounded-full border-2 border-foreground transition-colors ${
+            className={`relative w-14 h-7 rounded-full border-2 border-foreground transition-colors ${
               isAnnual ? 'bg-[hsl(var(--logo-yellow))]' : 'bg-muted'
             }`}
           >
             <span
-              className={`absolute top-1 w-5 h-5 rounded-full bg-foreground transition-transform ${
-                isAnnual ? 'translate-x-7' : 'translate-x-1'
+              className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-foreground transition-transform duration-200 ${
+                isAnnual ? 'translate-x-7' : 'translate-x-0'
               }`}
             />
           </button>
