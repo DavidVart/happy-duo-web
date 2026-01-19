@@ -15,10 +15,10 @@ const fadeInUp = {
 };
 
 const logos = [
-  { name: "Meta", src: metaLogo },
-  { name: "Bain & Co", src: bainLogo },
-  { name: "Stanford", src: stanfordLogo },
-  { name: "Michigan", src: michiganLogo },
+  { name: "Meta", src: metaLogo, className: "h-6 md:h-8" },
+  { name: "Bain & Co", src: bainLogo, className: "h-4 md:h-5" },
+  { name: "Stanford", src: stanfordLogo, className: "h-8 md:h-10" },
+  { name: "Michigan", src: michiganLogo, className: "h-8 md:h-10" },
 ];
 
 const About = () => {
@@ -275,11 +275,11 @@ const About = () => {
                 We brought together a team bridging top-tier technology and human strategy to solve this deeply human problem.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+              <div className="flex flex-row flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
                 {logos.map((company, index) => (
                   <motion.div
                     key={company.name}
-                    className="group cursor-default"
+                    className="group cursor-default flex items-center justify-center"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
@@ -289,9 +289,7 @@ const About = () => {
                     <img 
                       src={company.src} 
                       alt={company.name}
-                      className={`w-auto grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 ${
-                        company.name === "Michigan" ? "h-10 md:h-12" : "h-8 md:h-10"
-                      }`}
+                      className={`w-auto grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 ${company.className}`}
                     />
                   </motion.div>
                 ))}
