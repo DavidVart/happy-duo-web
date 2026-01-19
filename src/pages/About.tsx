@@ -275,7 +275,7 @@ const About = () => {
                 We brought together a team bridging top-tier technology and human strategy to solve this deeply human problem.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+              <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
                 {logos.map((company, index) => (
                   <motion.div
                     key={company.name}
@@ -289,7 +289,9 @@ const About = () => {
                     <img 
                       src={company.src} 
                       alt={company.name}
-                      className="h-8 md:h-10 w-auto grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                      className={`w-auto grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 ${
+                        company.name === "Michigan" ? "h-10 md:h-12" : "h-8 md:h-10"
+                      }`}
                     />
                   </motion.div>
                 ))}
