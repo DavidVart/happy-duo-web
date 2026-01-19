@@ -53,7 +53,7 @@ const Footer = () => {
           </nav>
 
           <p className="text-sm text-background/50">
-            © 2025 Happy Duo. All rights reserved.
+            © 2026 Happy Duo. All rights reserved.
           </p>
         </div>
       </div>

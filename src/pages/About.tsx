@@ -4,9 +4,9 @@ import Footer from "@/components/landing/Footer";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 // Import logos
-import metaLogo from "@/assets/logos/meta.svg";
-import bainLogo from "@/assets/logos/bain.svg";
-import stanfordLogo from "@/assets/logos/stanford.svg";
+import metaLogo from "@/assets/logos/meta.png";
+import bainLogo from "@/assets/logos/bain.png";
+import stanfordLogo from "@/assets/logos/stanford.png";
 import michiganLogo from "@/assets/logos/michigan.svg";
 
 const fadeInUp = {
@@ -25,12 +25,12 @@ const About = () => {
   useScrollToTop();
 
   return (
-    <div className="min-h-screen bg-background pt-[72px]">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <main>
         {/* Hero Section */}
-        <section className="py-24 md:py-32">
+        <section className="pt-24 pb-24 md:pt-32 md:pb-32">
           <div className="container mx-auto px-4">
             <motion.div 
               className="max-w-[750px] mx-auto text-center"
