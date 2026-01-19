@@ -212,4 +212,21 @@
       opacity: 0.7;
     }
   }
+
+  /* 2-line hamburger animation */
+  .hamburger-2-line .hamburger-line:nth-child(1) {
+    transform: translateY(0) rotate(0deg);
+  }
+  
+  .hamburger-2-line .hamburger-line:nth-child(2) {
+    transform: translateY(0) rotate(0deg);
+  }
+  
+  .hamburger-2-line.is-open .hamburger-line:nth-child(1) {
+    transform: translateY(4px) rotate(45deg);
+  }
+  
+  .hamburger-2-line.is-open .hamburger-line:nth-child(2) {
+    transform: translateY(-4px) rotate(-45deg);
+  }
 }

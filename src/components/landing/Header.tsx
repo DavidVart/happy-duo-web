@@ -1,4 +1,3 @@
-import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -34,6 +33,23 @@ const Header = () => {
     }
   }, [isHomePage, location.hash]);
 
+  // Close menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -59,103 +75,151 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 w-full">
+        <div 
+          className={`transition-all duration-300 ${
+            isScrolled 
+              ? 'bg-[hsl(var(--hero-bg))]/80 backdrop-blur-md border-b border-foreground/10' 
+              : 'bg-[hsl(var(--hero-bg))]'
+          }`}
+        >
+          <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+            {/* Logo - left aligned on all screens */}
+            <div className="flex items-center flex-shrink-0">
+              <button onClick={handleLogoClick} className="cursor-pointer">
+                <img 
+                  src={logo} 
+                  alt="Happy Duo" 
+                  className="h-8 sm:h-10 lg:h-14 w-auto object-contain" 
+                />
+              </button>
+            </div>
+            
+            {/* Desktop navigation */}
+            <nav className="hidden lg:flex items-center gap-6">
+              <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                Features
+              </a>
+              <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                How it Works
+              </a>
+              <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                Pricing
+              </a>
+              <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                FAQ
+              </a>
+            </nav>
+
+            {/* Right side: buttons + hamburger */}
+            <div className="flex items-center gap-2 lg:gap-3">
+              {/* Mobile/Tablet buttons - always visible */}
+              <Button variant="outline" size="sm" className="font-bold lg:hidden text-xs sm:text-sm px-2 sm:px-3">
+                Log in
+              </Button>
+              <Button variant="hero" size="sm" className="lg:hidden text-xs sm:text-sm px-2 sm:px-3">
+                Start now
+              </Button>
+              
+              {/* Desktop buttons */}
+              <Button variant="outline" size="lg" className="font-bold hidden lg:inline-flex">
+                Log in
+              </Button>
+              <Button variant="hero" size="lg" className="hidden lg:inline-flex">
+                Start now
+              </Button>
+              
+              {/* 2-line Hamburger menu - only on mobile/tablet */}
+              <button 
+                className={`lg:hidden p-2 ml-1 flex flex-col gap-[6px] hamburger-2-line ${mobileMenuOpen ? 'is-open' : ''}`}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              >
+                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Full-screen mobile menu overlay */}
       <div 
-        className={`transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-[hsl(var(--hero-bg))]/80 backdrop-blur-md border-b border-foreground/10' 
-            : 'bg-[hsl(var(--hero-bg))]'
+        className={`fixed inset-0 z-[100] lg:hidden transition-all duration-300 ${
+          mobileMenuOpen 
+            ? 'opacity-100 pointer-events-auto' 
+            : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          {/* Logo - left aligned on all screens */}
-          <div className="flex items-center">
+        {/* Solid background */}
+        <div className="absolute inset-0 bg-[hsl(var(--hero-bg))]" />
+        
+        {/* Header with logo and close button */}
+        <div className="relative z-10">
+          <div className="container mx-auto px-4 py-2 flex items-center justify-between">
             <button onClick={handleLogoClick} className="cursor-pointer">
-              <img src={logo} alt="Happy Duo" className="h-10 lg:h-14 w-auto object-contain" />
+              <img 
+                src={logo} 
+                alt="Happy Duo" 
+                className="h-8 sm:h-10 w-auto object-contain" 
+              />
             </button>
-          </div>
-          
-          {/* Desktop navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-              Features
-            </a>
-            <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-              How it Works
-            </a>
-            <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-              Pricing
-            </a>
-            <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-              FAQ
-            </a>
-          </nav>
-
-          {/* Right side: buttons + hamburger */}
-          <div className="flex items-center gap-2 lg:gap-3">
-            {/* Buttons always visible */}
-            <Button variant="outline" size="sm" className="font-bold hidden sm:inline-flex lg:hidden">
-              Log in
-            </Button>
-            <Button variant="hero" size="sm" className="hidden sm:inline-flex lg:hidden">
-              Start now
-            </Button>
             
-            {/* Desktop buttons */}
-            <Button variant="outline" size="lg" className="font-bold hidden lg:inline-flex">
-              Log in
-            </Button>
-            <Button variant="hero" size="lg" className="hidden lg:inline-flex">
-              Start now
-            </Button>
-            
-            {/* Hamburger menu - only on mobile/tablet */}
-            <button 
-              className="lg:hidden p-2 ml-1"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" className="font-bold text-xs sm:text-sm px-2 sm:px-3">
+                Log in
+              </Button>
+              <Button variant="hero" size="sm" className="text-xs sm:text-sm px-2 sm:px-3">
+                Start now
+              </Button>
+              
+              {/* Close button (X) */}
+              <button 
+                className="p-2 ml-1 flex flex-col gap-[6px] hamburger-2-line is-open"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className={`lg:hidden border-t border-foreground/20 ${
-            isScrolled ? 'bg-[hsl(var(--hero-bg))]/90 backdrop-blur-md' : 'bg-[hsl(var(--hero-bg))]'
-          }`}>
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <a href="#features" onClick={(e) => handleSmoothScroll(e, 'features')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
-                Features
-              </a>
-              <a href="#how-it-works" onClick={(e) => handleSmoothScroll(e, 'how-it-works')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
-                How it Works
-              </a>
-              <a href="#pricing" onClick={(e) => handleSmoothScroll(e, 'pricing')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
-                Pricing
-              </a>
-              <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium py-2">
-                FAQ
-              </a>
-              {/* Show buttons only on very small screens where they're hidden in header */}
-              <div className="flex flex-col gap-2 pt-2 sm:hidden">
-                <Button variant="outline" size="lg" className="w-full font-bold">
-                  Log in
-                </Button>
-                <Button variant="hero" size="lg" className="w-full">
-                  Start now
-                </Button>
-              </div>
-            </nav>
-          </div>
-        )}
+        {/* Navigation links */}
+        <nav className="relative z-10 container mx-auto px-4 pt-8 flex flex-col gap-6">
+          <a 
+            href="#features" 
+            onClick={(e) => handleSmoothScroll(e, 'features')} 
+            className="text-foreground hover:text-primary transition-colors font-medium text-xl py-2"
+          >
+            Features
+          </a>
+          <a 
+            href="#how-it-works" 
+            onClick={(e) => handleSmoothScroll(e, 'how-it-works')} 
+            className="text-foreground hover:text-primary transition-colors font-medium text-xl py-2"
+          >
+            How it Works
+          </a>
+          <a 
+            href="#pricing" 
+            onClick={(e) => handleSmoothScroll(e, 'pricing')} 
+            className="text-foreground hover:text-primary transition-colors font-medium text-xl py-2"
+          >
+            Pricing
+          </a>
+          <a 
+            href="#faq" 
+            onClick={(e) => handleSmoothScroll(e, 'faq')} 
+            className="text-foreground hover:text-primary transition-colors font-medium text-xl py-2"
+          >
+            FAQ
+          </a>
+        </nav>
       </div>
-    </header>
+    </>
   );
 };
 
