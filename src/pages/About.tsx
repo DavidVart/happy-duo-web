@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
@@ -15,18 +14,18 @@ const fadeInUp = {
 };
 
 const logos = [
-  { name: "Meta", src: metaLogo, className: "h-6 md:h-8" },
-  { name: "Bain & Co", src: bainLogo, className: "h-4 md:h-5" },
-  { name: "Stanford", src: stanfordLogo, className: "h-8 md:h-10" },
-  { name: "Michigan", src: michiganLogo, className: "h-8 md:h-10" },
+  { name: "Meta", src: metaLogo, className: "h-12 md:h-16 lg:h-20" },
+  { name: "Bain & Co", src: bainLogo, className: "h-4 md:h-5 lg:h-6" },
+  { name: "Stanford", src: stanfordLogo, className: "h-12 md:h-16 lg:h-20" },
+  { name: "Michigan", src: michiganLogo, className: "h-12 md:h-16 lg:h-20" },
 ];
 
 const About = () => {
   useScrollToTop();
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <div className="pt-16">
+
 
       <main>
         {/* Hero Section */}

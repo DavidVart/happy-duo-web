@@ -229,4 +229,41 @@
   .hamburger-2-line.is-open .hamburger-line:nth-child(2) {
     transform: translateY(-4px) rotate(-45deg);
   }
+
+  /* Phone input styling */
+  .phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .phone-input-wrapper .PhoneInputCountry {
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+    border-right: 1px solid hsl(var(--border) / 0.3);
+    margin-right: 0.5rem;
+  }
+  
+  .phone-input-wrapper .PhoneInputCountryIcon {
+    width: 1.5rem;
+    height: 1.125rem;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .phone-input-wrapper .PhoneInputCountrySelectArrow {
+    margin-left: 0.25rem;
+    border-color: hsl(var(--foreground));
+    opacity: 0.6;
+  }
+  
+  .phone-input-wrapper .PhoneInputCountrySelect {
+    cursor: pointer;
+  }
+  
+  .phone-input-wrapper .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon {
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.3);
+  }
 }
