@@ -1,11 +1,15 @@
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "@/assets/happy-duo-logo.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +22,24 @@ const Header = () => {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
+    if (isHomePage) {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setMobileMenuOpen(false);
+      }
+    } else {
+      navigate(`/#${targetId}`);
     }
+  };
+
+  const handleLogoClick = () => {
+    if (isHomePage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -37,11 +54,15 @@ const Header = () => {
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
           {/* Mobile: centered logo with absolute positioning */}
           <div className="lg:hidden absolute left-1/2 -translate-x-1/2">
-            <img src={logo} alt="Happy Duo" className="h-10 w-auto" />
+            <button onClick={handleLogoClick} className="cursor-pointer">
+              <img src={logo} alt="Happy Duo" className="h-10 w-auto object-contain" />
+            </button>
           </div>
           {/* Desktop: left-aligned logo */}
           <div className="hidden lg:flex items-center">
-            <img src={logo} alt="Happy Duo" className="h-14 w-auto" />
+            <button onClick={handleLogoClick} className="cursor-pointer">
+              <img src={logo} alt="Happy Duo" className="h-14 w-auto" />
+            </button>
           </div>
           
           <nav className="hidden lg:flex items-center gap-6">
