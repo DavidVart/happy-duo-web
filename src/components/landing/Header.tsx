@@ -84,7 +84,7 @@ const Header = () => {
               : 'bg-[hsl(var(--hero-bg))]'
           }`}
         >
-          <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+          <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
             {/* Logo - left aligned on all screens */}
             <div className="flex items-center flex-shrink-0">
               <button onClick={handleLogoClick} className="cursor-pointer">
@@ -113,12 +113,12 @@ const Header = () => {
             </nav>
 
             {/* Right side: buttons + hamburger */}
-            <div className="flex items-center gap-2 lg:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 lg:gap-3">
               {/* Mobile/Tablet buttons - always visible */}
-              <Button variant="outline" size="sm" className="font-bold lg:hidden text-xs sm:text-sm px-2 sm:px-3">
+              <Button variant="outline" size="sm" className="font-bold lg:hidden text-xs sm:text-sm px-3 sm:px-4">
                 Log in
               </Button>
-              <Button variant="hero" size="sm" className="lg:hidden text-xs sm:text-sm px-2 sm:px-3">
+              <Button variant="hero" size="sm" className="lg:hidden text-xs sm:text-sm px-3 sm:px-4">
                 Start now
               </Button>
               
@@ -157,7 +157,7 @@ const Header = () => {
         
         {/* Header with logo and close button */}
         <div className="relative z-10">
-          <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+          <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
             <button onClick={handleLogoClick} className="cursor-pointer">
               <img 
                 src={logo} 
@@ -166,11 +166,11 @@ const Header = () => {
               />
             </button>
             
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="font-bold text-xs sm:text-sm px-2 sm:px-3">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button variant="outline" size="sm" className="font-bold text-xs sm:text-sm px-3 sm:px-4">
                 Log in
               </Button>
-              <Button variant="hero" size="sm" className="text-xs sm:text-sm px-2 sm:px-3">
+              <Button variant="hero" size="sm" className="text-xs sm:text-sm px-3 sm:px-4">
                 Start now
               </Button>
               

@@ -2,10 +2,11 @@ import { useState } from "react";
 import { MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { PhoneInput } from "@/components/ui/phone-input";
 import heroIllustration from "@/assets/hero-illustration.png";
 
 const Hero = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,15 +39,14 @@ const Hero = () => {
                 Happy Duo helps couples communicate better, celebrate each other, and grow together—right where you already chat.
               </p>
 
-              {/* WhatsApp CTA Form - Stripe-style unified input */}
+              {/* WhatsApp CTA Form - with country flag picker */}
               <form onSubmit={handleSubmit} className="space-y-3">
-                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5 sm:pl-5 gap-2 sm:gap-0">
-                  <input
-                    type="tel"
-                    placeholder="Enter your WhatsApp number"
+                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5 sm:pl-4 gap-2 sm:gap-0">
+                  <PhoneInput
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground min-w-0 px-3 sm:px-0 py-2 sm:py-0"
+                    onChange={(value) => setPhoneNumber(value || "")}
+                    placeholder="Enter your WhatsApp number"
+                    defaultCountry="US"
                   />
                   <Button type="submit" variant="hero" className="rounded-full px-6 h-11 gap-2 shrink-0 w-full sm:w-auto">
                     Start chatting
