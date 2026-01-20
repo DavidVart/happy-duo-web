@@ -75,7 +75,7 @@ const Features = () => {
         >
           <div className="section-badge mx-auto">
             <span className="text-lg">✨</span>
-            <span>Features</span>
+            <span>Sneak Peek</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold">
             Everything you need to{" "}
@@ -94,14 +94,23 @@ const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`${colorClasses[feature.color]} feature-card rounded-2xl p-6`}
+              className={`${colorClasses[feature.color]} feature-card rounded-2xl p-6 relative overflow-hidden`}
             >
+              {/* Coming Soon Badge */}
+              <div className="absolute top-3 right-3 z-10">
+                <span className="bg-foreground text-background text-xs font-bold px-2 py-1 rounded-full">
+                  Coming Soon
+                </span>
+              </div>
+              
               <div className="space-y-4">
                 <div className={`w-12 h-12 rounded-xl bg-card border-2 border-foreground flex items-center justify-center ${iconColorClasses[feature.color]}`}>
                   <feature.icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-display font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <p className="text-muted-foreground leading-relaxed backdrop-blur-sm bg-white/30 rounded-lg p-2 -mx-2">
+                  {feature.description}
+                </p>
               </div>
             </motion.div>
           ))}

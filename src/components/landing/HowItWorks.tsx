@@ -1,5 +1,11 @@
-import { MessageCircle, Users, Sparkles } from "lucide-react";
+import { MessageCircle, Users, Sparkles, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
+
+const waitlistStep = {
+  icon: Rocket,
+  title: "Join the Waitlist",
+  description: "Move up the list. Share your invite now.",
+};
 
 const steps = [
   {
@@ -20,6 +26,16 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+  const scrollToHero = () => {
+    const heroInput = document.getElementById('hero-phone-input');
+    if (heroInput) {
+      heroInput.scrollIntoView({ behavior: 'smooth' });
+      heroInput.focus();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="how-it-works" className="py-24 bg-secondary">
       <div className="container mx-auto px-4">
@@ -40,7 +56,29 @@ const HowItWorks = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+        <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto items-stretch">
+          {/* Waitlist Step - highlighted */}
+          <motion.div 
+            className="relative flex cursor-pointer"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            onClick={scrollToHero}
+          >
+            <div className="relative bold-card rounded-2xl p-8 text-center space-y-4 flex flex-col flex-1 bg-[hsl(var(--logo-yellow))] hover:scale-105 transition-transform">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary border-2 border-foreground text-primary-foreground flex items-center justify-center text-sm font-bold">
+                ★
+              </div>
+              <div className="w-16 h-16 rounded-2xl bg-card border-2 border-foreground flex items-center justify-center mx-auto">
+                <waitlistStep.icon className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-display font-semibold">{waitlistStep.title}</h3>
+              <p className="text-foreground/80 flex-1">{waitlistStep.description}</p>
+            </div>
+          </motion.div>
+
+          {/* Original steps - grayed out */}
           {steps.map((step, index) => (
             <motion.div 
               key={index} 
@@ -48,11 +86,12 @@ const HowItWorks = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              transition={{ duration: 0.5, delay: (index + 1) * 0.15 }}
+              style={{ filter: 'grayscale(100%) opacity(0.5)' }}
             >
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-foreground" />
+                <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-foreground/30" />
               )}
               
               <div className="relative bold-card rounded-2xl p-8 text-center space-y-4 flex flex-col flex-1">

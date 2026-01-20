@@ -1,4 +1,4 @@
-import { Check, Gift, Heart } from "lucide-react";
+import { Check, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -17,8 +17,15 @@ const benefits = [
 const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
   
-  // When toggle is OFF (left) = Monthly pricing shown
-  // When toggle is ON (right) = Annual pricing shown
+  const scrollToHero = () => {
+    const heroInput = document.getElementById('hero-phone-input');
+    if (heroInput) {
+      heroInput.scrollIntoView({ behavior: 'smooth' });
+      heroInput.focus();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="pricing" className="py-24 bg-background">
@@ -126,28 +133,18 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <Button variant="hero" size="xl" className="w-full border-2 border-foreground">
-                Start 30-Day Free Trial
+              <Button 
+                variant="hero" 
+                size="xl" 
+                className="w-full border-2 border-foreground"
+                onClick={scrollToHero}
+              >
+                Join the waitlist now
               </Button>
 
               <p className="text-center text-sm text-muted-foreground">
                 Cancel anytime. You won't be charged until your trial ends.
               </p>
-            </div>
-
-            {/* Referral bonus */}
-            <div className="border-t-2 border-foreground p-6 bg-feature-pink">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-card border-2 border-foreground flex items-center justify-center">
-                  <Gift className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-semibold font-display">Share the love</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Refer a couple and get <strong>1 month free</strong> when they start their trial!
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </motion.div>
