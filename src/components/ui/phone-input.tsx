@@ -1,6 +1,7 @@
 import "react-phone-number-input/style.css";
-import PhoneInputLib, { Country } from "react-phone-number-input";
-import { forwardRef } from "react";
+import PhoneInputLib, { Country, getCountryCallingCode } from "react-phone-number-input";
+import { parsePhoneNumber } from "react-phone-number-input";
+import { forwardRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface PhoneInputProps {
@@ -13,10 +14,27 @@ interface PhoneInputProps {
 
 const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   ({ value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry = "US", className }, ref) => {
+    const [country, setCountry] = useState<Country | undefined>(defaultCountry);
+
+    // Detect country from the typed phone number value
+    useEffect(() => {
+      if (value) {
+        try {
+          const phoneNumber = parsePhoneNumber(value);
+          if (phoneNumber?.country) {
+            setCountry(phoneNumber.country);
+          }
+        } catch {
+          // Invalid phone number, keep current country
+        }
+      }
+    }, [value]);
+
     return (
       <PhoneInputLib
         international
-        countryCallingCodeEditable={false}
+        country={country}
+        onCountryChange={setCountry}
         defaultCountry={defaultCountry}
         value={value}
         onChange={onChange}
