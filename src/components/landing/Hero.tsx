@@ -41,14 +41,16 @@ const Hero = () => {
 
               {/* WhatsApp CTA Form - with country flag picker */}
               <form onSubmit={handleSubmit} className="space-y-3">
-                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5 sm:pl-4 gap-2 sm:gap-0">
-                  <PhoneInput
-                    value={phoneNumber}
-                    onChange={(value) => setPhoneNumber(value || "")}
-                    placeholder="Enter your WhatsApp number"
-                    defaultCountry="US"
-                  />
-                  <Button type="submit" variant="hero" className="rounded-full px-6 h-11 gap-2 shrink-0 w-full sm:w-auto">
+                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5 gap-2 sm:gap-2">
+                  <div className="flex-1 sm:pl-3">
+                    <PhoneInput
+                      value={phoneNumber}
+                      onChange={(value) => setPhoneNumber(value || "")}
+                      placeholder="Enter your WhatsApp number"
+                      defaultCountry="US"
+                    />
+                  </div>
+                  <Button type="submit" variant="hero" className="rounded-full px-4 sm:px-5 h-10 sm:h-11 gap-2 shrink-0 w-full sm:w-auto text-sm sm:text-base whitespace-nowrap">
                     Start chatting
                     <MessageCircle className="w-4 h-4" />
                   </Button>
