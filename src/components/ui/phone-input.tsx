@@ -16,6 +16,7 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     return (
       <PhoneInputLib
         international
+        countryCallingCodeEditable={false}
         defaultCountry={defaultCountry}
         value={value}
         onChange={onChange}
