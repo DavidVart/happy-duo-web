@@ -41,19 +41,37 @@ const Hero = () => {
 
               {/* WhatsApp CTA Form - with country flag picker */}
               <form onSubmit={handleSubmit} className="space-y-3">
-                <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5 gap-2 sm:gap-2">
-                  <div className="flex-1 sm:pl-3">
-                    <PhoneInput
-                      value={phoneNumber}
-                      onChange={(value) => setPhoneNumber(value || "")}
-                      placeholder="Enter your WhatsApp number"
-                      defaultCountry="US"
-                    />
+                <div className="relative max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                    <div className="flex-1 min-w-0 sm:pl-3 sm:pr-[170px]">
+                      <PhoneInput
+                        value={phoneNumber}
+                        onChange={(value) => setPhoneNumber(value || "")}
+                        placeholder="Enter your WhatsApp number"
+                        defaultCountry="US"
+                      />
+                    </div>
+
+                    {/* Mobile: normal flow button */}
+                    <Button
+                      type="submit"
+                      variant="hero"
+                      className="sm:hidden rounded-full px-4 h-10 gap-2 w-full text-sm whitespace-nowrap"
+                    >
+                      Start chatting
+                      <MessageCircle className="w-4 h-4" />
+                    </Button>
+
+                    {/* Tablet/Desktop: pinned inside the pill */}
+                    <Button
+                      type="submit"
+                      variant="hero"
+                      className="hidden sm:inline-flex absolute right-1.5 top-1.5 bottom-1.5 rounded-full px-5 gap-2 h-auto text-sm md:text-base whitespace-nowrap"
+                    >
+                      Start chatting
+                      <MessageCircle className="w-4 h-4" />
+                    </Button>
                   </div>
-                  <Button type="submit" variant="hero" className="rounded-full px-4 sm:px-5 h-10 sm:h-11 gap-2 shrink-0 w-full sm:w-auto text-sm sm:text-base whitespace-nowrap">
-                    Start chatting
-                    <MessageCircle className="w-4 h-4" />
-                  </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   🎉 Start your <strong>30-day free trial</strong> today.
