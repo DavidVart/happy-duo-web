@@ -155,33 +155,35 @@ const Header = () => {
         {/* Solid background */}
         <div className="absolute inset-0 bg-[hsl(var(--hero-bg))]" />
         
-        {/* Header with logo and close button */}
+        {/* Header with logo and close button - matches main header exactly */}
         <div className="relative z-10">
-          <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-            <button onClick={handleLogoClick} className="cursor-pointer">
-              <img 
-                src={logo} 
-                alt="Happy Duo" 
-                className="h-8 sm:h-10 w-auto object-contain" 
-              />
-            </button>
+          <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <div className="flex items-center flex-shrink-0">
+              <button onClick={handleLogoClick} className="cursor-pointer">
+                <img 
+                  src={logo} 
+                  alt="Happy Duo" 
+                  className="h-6 sm:h-8 w-auto object-contain" 
+                />
+              </button>
+            </div>
             
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Button variant="outline" size="sm" className="font-bold text-xs sm:text-sm px-3 sm:px-4">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+              <Button variant="outline" size="sm" className="font-bold text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
                 Log in
               </Button>
-              <Button variant="hero" size="sm" className="text-xs sm:text-sm px-3 sm:px-4">
+              <Button variant="hero" size="sm" className="text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
                 Start now
               </Button>
               
-              {/* Close button (X) */}
+              {/* Close button (X) - matches hamburger exactly */}
               <button 
                 className="p-2 ml-1 flex flex-col gap-[6px] hamburger-2-line is-open"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
-                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
-                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+                <span className="hamburger-line w-5 sm:w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+                <span className="hamburger-line w-5 sm:w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
               </button>
             </div>
           </div>
