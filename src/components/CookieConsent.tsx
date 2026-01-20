@@ -58,7 +58,7 @@ const CookieConsent = () => {
                     onClick={handleDecline}
                     variant="ghost"
                     size="sm"
-                    className="text-muted-foreground hover:text-foreground text-xs"
+                    className="text-muted-foreground hover:text-foreground hover:bg-[#16b4dc]/20 text-xs"
                   >
                     Decline
                   </Button>
