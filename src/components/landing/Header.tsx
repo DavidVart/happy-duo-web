@@ -23,7 +23,6 @@ const Header = () => {
   useEffect(() => {
     if (isHomePage && location.hash) {
       const targetId = location.hash.replace('#', '');
-      // Small delay to ensure DOM is ready
       setTimeout(() => {
         const element = document.getElementById(targetId);
         if (element) {
@@ -60,8 +59,22 @@ const Header = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Navigate to home page with hash
       navigate(`/#${targetId}`);
+    }
+  };
+
+  const scrollToHero = () => {
+    setMobileMenuOpen(false);
+    if (isHomePage) {
+      const heroInput = document.getElementById('hero-phone-input');
+      if (heroInput) {
+        heroInput.scrollIntoView({ behavior: 'smooth' });
+        heroInput.focus();
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      navigate('/');
     }
   };
 
@@ -76,7 +89,21 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 w-full">
+      {/* Yellow Marquee Banner */}
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-[hsl(var(--logo-yellow))] border-b border-foreground/20 overflow-hidden">
+        <div className="marquee-container py-1.5">
+          <div className="marquee-content">
+            <span className="marquee-text text-sm font-medium text-[hsl(var(--logo-yellow-foreground))]">
+              🎉 Waitlist now open — join now to secure early access &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+              🎉 Waitlist now open — join now to secure early access &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+              🎉 Waitlist now open — join now to secure early access &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+              🎉 Waitlist now open — join now to secure early access &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <header className="fixed top-8 left-0 right-0 z-50 w-full">
         <div 
           className={`transition-all duration-300 ${
             isScrolled 
@@ -114,20 +141,14 @@ const Header = () => {
 
             {/* Right side: buttons + hamburger */}
             <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3 flex-shrink-0">
-              {/* Mobile/Tablet buttons */}
-              <Button variant="outline" size="sm" className="font-bold lg:hidden text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
-                Log in
-              </Button>
-              <Button variant="hero" size="sm" className="lg:hidden text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
-                Start now
+              {/* Mobile/Tablet buttons - No login, just Join Waitlist */}
+              <Button variant="hero" size="sm" className="lg:hidden text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8" onClick={scrollToHero}>
+                Join Waitlist
               </Button>
               
-              {/* Desktop buttons */}
-              <Button variant="outline" size="lg" className="font-bold hidden lg:inline-flex">
-                Log in
-              </Button>
-              <Button variant="hero" size="lg" className="hidden lg:inline-flex">
-                Start now
+              {/* Desktop buttons - No login, just Join Waitlist */}
+              <Button variant="hero" size="lg" className="hidden lg:inline-flex" onClick={scrollToHero}>
+                Join Waitlist
               </Button>
               
               {/* 2-line Hamburger menu - only on mobile/tablet */}
@@ -156,7 +177,7 @@ const Header = () => {
         <div className="absolute inset-0 bg-[hsl(var(--hero-bg))]" />
         
         {/* Header with logo and close button - matches main header exactly */}
-        <div className="relative z-10">
+        <div className="relative z-10 pt-8">
           <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
             <div className="flex items-center flex-shrink-0">
               <button onClick={handleLogoClick} className="cursor-pointer">
@@ -169,11 +190,8 @@ const Header = () => {
             </div>
             
             <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-              <Button variant="outline" size="sm" className="font-bold text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
-                Log in
-              </Button>
-              <Button variant="hero" size="sm" className="text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
-                Start now
+              <Button variant="hero" size="sm" className="text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8" onClick={scrollToHero}>
+                Join Waitlist
               </Button>
               
               {/* Close button (X) - matches hamburger exactly */}

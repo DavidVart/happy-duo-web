@@ -5,6 +5,7 @@ import { forwardRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface PhoneInputProps {
+  id?: string;
   value: string;
   onChange: (value: string | undefined) => void;
   placeholder?: string;
@@ -13,7 +14,7 @@ interface PhoneInputProps {
 }
 
 const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
-  ({ value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry = "US", className }, ref) => {
+  ({ id, value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry = "US", className }, ref) => {
     const [country, setCountry] = useState<Country | undefined>(defaultCountry);
 
     // Detect country from the typed phone number value
@@ -32,6 +33,7 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     return (
       <PhoneInputLib
+        id={id}
         international
         country={country}
         onCountryChange={setCountry}
