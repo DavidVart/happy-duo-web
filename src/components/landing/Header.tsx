@@ -84,14 +84,14 @@ const Header = () => {
               : 'bg-[hsl(var(--hero-bg))]'
           }`}
         >
-          <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-            {/* Logo - left aligned on all screens */}
+          <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            {/* Logo - left aligned, smaller on mobile */}
             <div className="flex items-center flex-shrink-0">
               <button onClick={handleLogoClick} className="cursor-pointer">
                 <img 
                   src={logo} 
                   alt="Happy Duo" 
-                  className="h-8 sm:h-10 lg:h-14 w-auto object-contain" 
+                  className="h-6 sm:h-8 lg:h-14 w-auto object-contain" 
                 />
               </button>
             </div>
@@ -113,12 +113,12 @@ const Header = () => {
             </nav>
 
             {/* Right side: buttons + hamburger */}
-            <div className="flex items-center gap-2 sm:gap-3 lg:gap-3">
-              {/* Mobile/Tablet buttons - always visible */}
-              <Button variant="outline" size="sm" className="font-bold lg:hidden text-xs sm:text-sm px-3 sm:px-4">
+            <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3 flex-shrink-0">
+              {/* Mobile/Tablet buttons */}
+              <Button variant="outline" size="sm" className="font-bold lg:hidden text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
                 Log in
               </Button>
-              <Button variant="hero" size="sm" className="lg:hidden text-xs sm:text-sm px-3 sm:px-4">
+              <Button variant="hero" size="sm" className="lg:hidden text-[10px] sm:text-xs px-2 sm:px-3 h-7 sm:h-8">
                 Start now
               </Button>
               
@@ -136,8 +136,8 @@ const Header = () => {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
-                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
-                <span className="hamburger-line w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+                <span className="hamburger-line w-5 sm:w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
+                <span className="hamburger-line w-5 sm:w-6 h-[2px] bg-current transition-transform duration-300 origin-center" />
               </button>
             </div>
           </div>
