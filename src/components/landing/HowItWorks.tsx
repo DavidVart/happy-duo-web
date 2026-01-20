@@ -40,11 +40,11 @@ const HowItWorks = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
           {steps.map((step, index) => (
             <motion.div 
               key={index} 
-              className="relative"
+              className="relative flex"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -55,7 +55,7 @@ const HowItWorks = () => {
                 <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-foreground" />
               )}
               
-              <div className="relative bold-card rounded-2xl p-8 text-center space-y-4">
+              <div className="relative bold-card rounded-2xl p-8 text-center space-y-4 flex flex-col flex-1">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary border-2 border-foreground text-primary-foreground flex items-center justify-center text-sm font-bold">
                   {index + 1}
                 </div>
@@ -63,7 +63,7 @@ const HowItWorks = () => {
                   <step.icon className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-display font-semibold">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
+                <p className="text-muted-foreground flex-1">{step.description}</p>
               </div>
             </motion.div>
           ))}
