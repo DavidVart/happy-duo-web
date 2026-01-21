@@ -11,10 +11,11 @@ interface PhoneInputProps {
   placeholder?: string;
   defaultCountry?: Country;
   className?: string;
+  disabled?: boolean;
 }
 
 const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
-  ({ id, value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry = "US", className }, ref) => {
+  ({ id, value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry = "US", className, disabled }, ref) => {
     const [country, setCountry] = useState<Country | undefined>(defaultCountry);
 
     // Detect country from the typed phone number value
@@ -41,8 +42,10 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        disabled={disabled}
         className={cn(
           "phone-input-wrapper flex-1",
+          disabled && "opacity-50 cursor-not-allowed",
           className
         )}
         inputComponent={CustomInput}
