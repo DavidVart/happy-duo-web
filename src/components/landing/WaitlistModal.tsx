@@ -13,6 +13,7 @@ import { addToWaitlist } from "@/services/airtable";
 import { toast } from "sonner";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
+import { generateReferralLink } from "@/lib/referral";
 
 interface WaitlistModalProps {
     open: boolean;
@@ -24,8 +25,7 @@ const WaitlistModal = ({ open, onOpenChange }: WaitlistModalProps) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [copied, setCopied] = useState(false);
-
-    const referralLink = "happyduo.ai/join?ref=123";
+    const [referralLink, setReferralLink] = useState<string>("");
 
     const triggerConfetti = () => {
         confetti({
@@ -43,6 +43,9 @@ const WaitlistModal = ({ open, onOpenChange }: WaitlistModalProps) => {
         setIsSubmitting(true);
         try {
             await addToWaitlist(phoneNumber);
+            // Generate unique referral link for this user
+            const link = generateReferralLink(phoneNumber);
+            setReferralLink(link);
             setIsSubmitted(true);
             triggerConfetti();
             toast.success("You're on the waitlist! 🎉");
@@ -55,7 +58,7 @@ const WaitlistModal = ({ open, onOpenChange }: WaitlistModalProps) => {
     };
 
     const handleCopyLink = () => {
-        navigator.clipboard.writeText(`https://${referralLink}`);
+        navigator.clipboard.writeText(referralLink);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -136,10 +139,10 @@ const WaitlistModal = ({ open, onOpenChange }: WaitlistModalProps) => {
 
                             <div className="pt-4 border-t border-foreground/10 space-y-3">
                                 <p className="text-sm font-medium">
-                                    Share to move up the list:
+                                    🚀 You moved up! Share to climb even higher:
                                 </p>
                                 <div className="flex items-center gap-2 bg-secondary rounded-full p-2 border border-foreground/20">
-                                    <span className="flex-1 text-sm text-muted-foreground truncate px-3">
+                                    <span className="flex-1 text-xs text-muted-foreground truncate px-3">
                                         {referralLink}
                                     </span>
                                     <Button
