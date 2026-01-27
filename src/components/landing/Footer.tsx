@@ -50,6 +50,9 @@ const Footer = () => {
             >
               Pricing
             </a>
+            <Link to="/blog" className="text-background/70 hover:text-background transition-colors">
+              Blog
+            </Link>
             <Link to="/about" className="text-background/70 hover:text-background transition-colors">
               About
             </Link>

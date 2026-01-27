@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import logo from "@/assets/happy-duo-logo.png";
 import WaitlistModal from "./WaitlistModal";
 
@@ -128,6 +128,9 @@ const Header = () => {
               <a href="#faq" onClick={(e) => handleSmoothScroll(e, 'faq')} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
                 FAQ
               </a>
+              <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                Blog
+              </Link>
             </nav>
 
             {/* Right side: buttons + hamburger */}
@@ -227,6 +230,13 @@ const Header = () => {
           >
             FAQ
           </a>
+          <Link
+            to="/blog"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-foreground hover:text-primary transition-colors font-medium text-xl py-2"
+          >
+            Blog
+          </Link>
         </nav>
       </div>
 
