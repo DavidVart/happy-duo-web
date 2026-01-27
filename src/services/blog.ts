@@ -53,7 +53,9 @@ function mapRecordToPost(record: AirtableRecord): BlogPost {
  * Fetch all published blog posts
  */
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(TABLE_NAME)}?filterByFormula={Status}="Published"&sort[0][field]=Published Date&sort[0][direction]=desc`;
+  const filterFormula = encodeURIComponent('{Status}="Published"');
+  const sortField = encodeURIComponent('Published Date');
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(TABLE_NAME)}?filterByFormula=${filterFormula}&sort[0][field]=${sortField}&sort[0][direction]=desc`;
 
   const response = await fetch(url, {
     headers: {
@@ -62,6 +64,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Airtable API error:", response.status, errorText);
     throw new Error("Failed to fetch blog posts");
   }
 
@@ -73,7 +77,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
  * Fetch a single blog post by slug
  */
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(TABLE_NAME)}?filterByFormula=AND({Slug}="${slug}",{Status}="Published")&maxRecords=1`;
+  const filterFormula = encodeURIComponent(`AND({Slug}="${slug}",{Status}="Published")`);
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(TABLE_NAME)}?filterByFormula=${filterFormula}&maxRecords=1`;
 
   const response = await fetch(url, {
     headers: {
@@ -82,6 +87,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Airtable API error:", response.status, errorText);
     throw new Error("Failed to fetch blog post");
   }
 
