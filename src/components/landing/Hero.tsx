@@ -110,7 +110,7 @@ const Hero = () => {
             {/* WhatsApp CTA Form - with country flag picker */}
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-3">
-                <div className="relative max-w-md bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5">
+                <div className="relative max-w-lg bg-card rounded-2xl sm:rounded-full border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-2 sm:p-1.5">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <div className="flex-1 min-w-0 sm:pl-3 sm:pr-[170px]">
                       <PhoneInput
@@ -118,7 +118,7 @@ const Hero = () => {
                         value={phoneNumber}
                         onChange={(value) => setPhoneNumber(value || "")}
                         placeholder="Enter your WhatsApp number"
-                        defaultCountry="US"
+                        defaultCountry="GB"
                         disabled={isSubmitting}
                       />
                     </div>
@@ -172,7 +172,7 @@ const Hero = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="space-y-4 max-w-md"
+                className="space-y-4 max-w-lg"
               >
                 <div className="bg-card rounded-2xl border-2 border-foreground shadow-[4px_4px_0_hsl(var(--foreground))] p-6 text-center space-y-4">
                   <div className="w-16 h-16 mx-auto rounded-full bg-[hsl(var(--logo-yellow))] border-2 border-foreground flex items-center justify-center">

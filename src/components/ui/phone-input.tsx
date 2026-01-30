@@ -1,7 +1,6 @@
 import "react-phone-number-input/style.css";
-import PhoneInputLib, { Country, getCountryCallingCode } from "react-phone-number-input";
-import { parsePhoneNumber } from "react-phone-number-input";
-import { forwardRef, useState, useEffect } from "react";
+import PhoneInputLib, { Country, getCountries, getCountryCallingCode } from "react-phone-number-input";
+import { forwardRef, useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 interface PhoneInputProps {
@@ -14,31 +13,75 @@ interface PhoneInputProps {
   disabled?: boolean;
 }
 
+// Countries to prioritize for ambiguous calling codes (e.g. +1 -> US not Canada)
+const PRIORITY_COUNTRIES: Country[] = [
+  "US", "GB", "DE", "FR", "ES", "IT", "AU", "IN", "BR", "MX", "JP", "CN", "KR",
+  "NL", "SE", "NO", "DK", "FI", "PT", "PL", "AT", "CH", "BE", "IE", "NZ",
+  "SG", "HK", "AE", "SA", "ZA", "AR", "CL", "CO", "PE", "EG", "IL", "TR",
+  "TH", "PH", "ID", "MY", "VN", "PK", "BD", "NG", "KE", "GH", "RU", "UA",
+];
+
+function buildCallingCodeToCountryMap(): Map<string, Country> {
+  const map = new Map<string, Country>();
+  // First pass: all countries
+  for (const c of getCountries()) {
+    try {
+      const code = getCountryCallingCode(c);
+      if (!map.has(code)) map.set(code, c);
+    } catch { /* skip */ }
+  }
+  // Second pass: priority countries override ambiguous codes
+  for (const c of PRIORITY_COUNTRIES) {
+    try {
+      const code = getCountryCallingCode(c);
+      map.set(code, c);
+    } catch { /* skip */ }
+  }
+  return map;
+}
+
+function detectCountryFromValue(
+  value: string,
+  codeMap: Map<string, Country>
+): Country | undefined {
+  if (!value || !value.startsWith("+")) return undefined;
+  const digits = value.slice(1).replace(/\D/g, "");
+  if (!digits) return undefined;
+  // Try longest match first (calling codes can be 1-4 digits)
+  for (let len = Math.min(digits.length, 4); len >= 1; len--) {
+    const code = digits.slice(0, len);
+    const country = codeMap.get(code);
+    if (country) return country;
+  }
+  return undefined;
+}
+
 const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
-  ({ id, value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry = "US", className, disabled }, ref) => {
+  ({ id, value, onChange, placeholder = "Enter your WhatsApp number", defaultCountry, className, disabled }, ref) => {
+    const codeMap = useMemo(() => buildCallingCodeToCountryMap(), []);
     const [country, setCountry] = useState<Country | undefined>(defaultCountry);
 
-    // Detect country from the typed phone number value
+    // Detect country from the dialing code as the user types
     useEffect(() => {
       if (value) {
-        try {
-          const phoneNumber = parsePhoneNumber(value);
-          if (phoneNumber?.country) {
-            setCountry(phoneNumber.country);
-          }
-        } catch {
-          // Invalid phone number, keep current country
+        const detected = detectCountryFromValue(value, codeMap);
+        if (detected) {
+          setCountry(detected);
         }
+      } else {
+        setCountry(defaultCountry);
       }
-    }, [value]);
+    }, [value, codeMap, defaultCountry]);
 
     return (
       <PhoneInputLib
         id={id}
         international
-        country={country}
-        onCountryChange={setCountry}
         defaultCountry={defaultCountry}
+        country={country}
+        onCountryChange={(c) => {
+          setCountry(c);
+        }}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

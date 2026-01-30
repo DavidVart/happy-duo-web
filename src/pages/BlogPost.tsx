@@ -2,9 +2,17 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Loader2 } from "lucide-react";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { getBlogPostBySlug, type BlogPost } from "@/services/blog";
+
+// Configure marked for proper markdown parsing
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+});
 
 const categoryColors: Record<string, string> = {
   Update: "bg-feature-blue",
@@ -154,17 +162,10 @@ const BlogPostPage = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="bold-card rounded-2xl p-6 md:p-10">
-                <div className="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
-                  {/* Render content - supports line breaks */}
-                  {post.content.split("\n").map((paragraph, index) => {
-                    if (!paragraph.trim()) return <br key={index} />;
-                    return (
-                      <p key={index} className="mb-4 text-foreground leading-relaxed text-base md:text-lg">
-                        {paragraph}
-                      </p>
-                    );
-                  })}
-                </div>
+                <div
+                  className="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-p:text-foreground prose-p:leading-relaxed prose-p:text-base md:prose-p:text-lg prose-li:text-foreground prose-strong:text-foreground"
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(post.content) as string) }}
+                />
               </div>
 
               {/* Back to Blog CTA */}

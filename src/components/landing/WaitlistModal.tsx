@@ -96,7 +96,7 @@ const WaitlistModal = ({ open, onOpenChange }: WaitlistModalProps) => {
                                         value={phoneNumber}
                                         onChange={(value) => setPhoneNumber(value || "")}
                                         placeholder="Enter your WhatsApp number"
-                                        defaultCountry="US"
+                                        defaultCountry="GB"
                                         disabled={isSubmitting}
                                     />
                                 </div>
